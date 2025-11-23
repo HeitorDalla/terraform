@@ -1,10 +1,13 @@
 # Arquivos secretos
 credentials.json
 **/credentials/*.json
-run_tf.sh # Adicione o script wrapper aqui!
+run_tf.sh
 
 # Arquivos de estado e binários do Terraform
 *.tfstate
 *.tfstate.*
 .terraform/
 .terraform.lock.hcl
+
+# Documentações
+.docs/
