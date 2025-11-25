@@ -1,2 +1,4 @@
 provider.tf - fornecera todas as bibliotecas do GCP, tudo que o GCP tem de preparado para o terraform
 backend.tf - dira ao terraform para armazenar suas informacoes de estado no bucket do GCP
+variables.tf - arquivo que vai conter todas as variáveis que vai ser usado na configuração na forma de blocos
+    - pode-se incluir o NOME_VARIAVEL, TIPO_VARIAVEL, VALOR_PADRAO, DESCRICAO_VARIAVEL
