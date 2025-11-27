@@ -1,18 +1,18 @@
 # Create a single Compute Engine instance
 resource "google_compute_instance" "flask_app_1" {
-    name         = var.vm_name
-    machine_type = var.vm_type
+    name         = var.vm_config.vm_name
+    machine_type = var.vm_config.vm_type
     zone         = var.gcp_zone
-    tags         = ["ssh"]
+    tags         = var.vm_config.vm_tags
 
     boot_disk {
       initialize_params {
-        image = var.vm_image
+        image = var.vm_config.vm_image
       }
     }
 
     # Install Flask
-    metadata_startup_script = var.vm_startup_script
+    metadata_startup_script = var.vm_config.vm_startup_script
 
     network_interface {
       subnetwork = google_compute_subnetwork.subnet_1.id

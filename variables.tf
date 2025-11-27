@@ -23,31 +23,27 @@ variable "gcp_zone" {
     default = "us-east1-b"
 }
 
-// Informações para VM
-variable "vm_name" {
-    type = string
-    description = "The VM name to be used in GCP"
-    default = "flask-app-1"
+// Variáveis para a VM com variáveis complexas (objeto, lista)
+variable "vm_config" {
+    description = "Valores e propriedades da configuração da VM"
+    type = object({
+        vm_name = string
+        vm_type = string
+        vm_tags = list(string)
+        vm_image = string
+        vm_startup_script = string
+    })
+
+    default = {
+        vm_name = "flask-app-1"
+        vm_type = "f1-micro"
+        vm_tags = [ "ssh", "flask", "web-app" ]
+        vm_image = "debian-cloud/debian-11"
+        vm_startup_script = "sudo apt-get update; sudo apt-get install -yq build-essential python3-pip rsync; pip install flask"
+    }
 }
 
-variable "vm_type" {
-    type = string
-    description = "The VM machine_type for vCPU and memory"
-    default = "f1-micro"
-}
-
-variable "vm_image" {
-    type = string
-    description = "The image name for the OS of the VM"
-    default = "debian-cloud/debian-11"
-}
-
-variable "vm_startup_script" {
-    type = string
-    description = "The text of the startup script command that we need to run in the VM when it boots up"
-    default = "sudo apt-get update; sudo apt-get install -yq build-essential python3-pip rsync; pip install flask"
-}
-
+// Outras configurações
 variable "subnet_ip_range" {
     type = string
     description = "The IPv4 CIDR range to be used in the VPC that will be created"
